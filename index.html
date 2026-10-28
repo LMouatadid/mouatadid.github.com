@@ -1,99 +1,179 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fc">
-  <meta name="description" content="Site académique de Lhousain Mouatadid, docteur et agrégé en mathématiques. Recherche en algèbre et théorie des codes correcteurs d'erreurs.">
-  <title>Lhousain Mouatadid — Mathématiques</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lhousain Mouatadid · Mathematics, coding theory</title>
+<meta name="description" content="Lhousain Mouatadid, PhD and agrégé in mathematics. Research on algebraic codes from skew and twisted structures.">
+<style>
+:root{
+  --bg:#f3f5f7; --ink:#14202b; --muted:#4d5d6b; --line:#d5dce2;
+  --accent:#0f6e6e; --err:#c8321e; --card:#ffffff;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#10181f; --ink:#e6edf2; --muted:#9bacb9; --line:#27343f; --accent:#5cc4c0; --err:#ff7a64; --card:#16212a; color-scheme:dark;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.2;margin:0}
+nav{border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.25rem;flex-wrap:wrap;padding-top:.9rem;padding-bottom:.9rem;font-size:.95rem}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--accent)}
+header{padding:3.5rem 0 2.5rem}
+h1{font-size:clamp(2.2rem,6vw,3.2rem);font-weight:600;letter-spacing:-.01em}
+.role{margin:.6rem 0 0;color:var(--muted);font-size:1.1rem}
+.lead{margin:1.4rem 0 0;max-width:38rem}
+.links{display:flex;gap:1.25rem;flex-wrap:wrap;margin-top:1.4rem}
+
+/* Hamming demo */
+.demo{margin-top:2.4rem;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.3rem}
+.demo h2{font-size:1.15rem}
+.demo p{margin:.4rem 0 1rem;color:var(--muted);font-size:.95rem}
+.bits{display:flex;gap:.45rem;flex-wrap:wrap}
+.bit{width:3rem;height:3.4rem;border:1.5px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);
+  font:600 1.3rem ui-monospace,SFMono-Regular,Menlo,monospace;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.bit small{font:400 .65rem system-ui,sans-serif;color:var(--muted);margin-top:.15rem}
+.bit.parity{border-style:dashed}
+.bit.bad{border-color:var(--err);color:var(--err);background:color-mix(in srgb,var(--err) 10%,var(--bg))}
+.status{margin:1rem 0 .6rem;min-height:1.6em;font-size:.97rem}
+.status b{color:var(--err)}
+.status.ok b{color:var(--accent)}
+.btns{display:flex;gap:.6rem}
+.btns button{font:inherit;font-size:.9rem;padding:.4rem .9rem;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.btns button:hover{background:var(--accent);color:var(--bg)}
+
+section{padding:2.2rem 0;border-top:1px solid var(--line)}
+section>h2{font-size:1.6rem;margin-bottom:1.1rem}
+ul.plain{list-style:none;margin:0;padding:0}
+.pub,.row{display:grid;grid-template-columns:4.2rem 1fr;gap:.2rem 1rem;margin-bottom:1.1rem}
+.pub .y,.row .y{color:var(--muted);font-variant-numeric:tabular-nums}
+.pub em,.row em{color:var(--muted)}
+.t{font-weight:600}
+.small{font-size:.92rem;color:var(--muted)}
+footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (max-width:520px){.pub,.row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.bit{transition:background .15s,border-color .15s}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Lhousain Mouatadid — accueil"><span class="brand-mark">LM</span><span>Lhousain Mouatadid<span class="brand-sub">Mathématiques · Recherche</span></span></a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Ouvrir le menu</span></button>
-      <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-        <a href="#research" data-i18n="navResearch">Recherche</a>
-        <a href="#publications" data-i18n="navPublications">Publications</a>
-        <a href="#teaching" data-i18n="navTeaching">Enseignement</a>
-        <a href="#cv" data-i18n="navCV">CV</a>
-        <a href="#contact" data-i18n="navContact">Contact</a>
-        <button id="language-toggle" class="language-toggle" type="button" aria-label="Switch to English">EN</button>
-      </nav>
-    </div>
-  </header>
+<nav><div class="wrap">
+  <a href="#research">Research</a><a href="#publications">Publications</a><a href="#teaching">Teaching</a><a href="#education">Education</a><a href="#contact">Contact</a>
+</div></nav>
 
-  <main id="main">
-    <section id="home" class="hero section-pad">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span><span data-i18n="eyebrow">Site académique personnel</span></p>
-          <h1><span data-i18n="hello">Bonjour, je suis</span><br><span class="name">Lhousain Mouatadid.</span></h1>
-          <p class="hero-title" data-i18n="role">Docteur et agrégé en mathématiques</p>
-          <p class="hero-intro" data-i18n="intro">Mes activités portent sur l’enseignement des mathématiques et la recherche en algèbre, notamment la théorie algébrique des codes correcteurs d’erreurs et les structures tordues.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#publications" data-i18n="viewPubs">Voir les publications <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="documents/CV_Lhousain_Mouatadid.pdf" download data-i18n="downloadCV">Télécharger le CV ↓</a>
-          </div>
-          <div class="hero-meta"><span data-i18n="specialtyLabel">Spécialité</span><strong data-i18n="specialty">Mathématiques · Algèbre et applications</strong></div>
-        </div>
-        <div class="hero-art" aria-label="Illustration mathématique abstraite" role="img">
-          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
-          <div class="formula formula-one">α : G × G → F*</div>
-          <div class="formula formula-two">C ⊆ Fⁿ</div>
-          <div class="formula formula-three">dim(C) = k</div>
-          <div class="hero-core"><span>∑</span><small>ALGEBRA<br>& CODES</small></div>
-          <span class="art-dot dot-a"></span><span class="art-dot dot-b"></span><span class="art-dot dot-c"></span>
-        </div>
-      </div>
-    </section>
+<main class="wrap">
+<header>
+  <h1>Lhousain Mouatadid</h1>
+  <p class="role">PhD and agrégé in mathematics · ESM6ISS, UM6SS, Rabat</p>
+  <p class="lead">I study algebraic error-correcting codes built from skew and twisted structures, and the duality properties that make them useful. I also work toward quantum codes and post-quantum cryptography.</p>
+  <div class="links">
+    <a href="#publications">Read my papers</a>
+    <a href="mailto:lhousain.mouatadid@gmail.com">Email me</a>
+    <!-- <a href="https://orcid.org/XXXX-XXXX-XXXX-XXXX">ORCID</a> -->
+    <!-- <a href="https://scholar.google.com/citations?user=XXXX">Google Scholar</a> -->
+  </div>
 
-    <section class="quick-facts"><div class="container facts-grid">
-      <div><span class="fact-number">01</span><span data-i18n="fact1">Algèbre et structures</span></div>
-      <div><span class="fact-number">02</span><span data-i18n="fact2">Codes correcteurs d’erreurs</span></div>
-      <div><span class="fact-number">03</span><span data-i18n="fact3">Enseignement supérieur</span></div>
-    </div></section>
+  <div class="demo" aria-labelledby="demo-title">
+    <h2 id="demo-title">A code that repairs itself</h2>
+    <p>This is a Hamming (7,4) codeword. Dashed boxes are parity bits. Click any bit to corrupt it.</p>
+    <div class="bits" id="bits" role="group" aria-label="Codeword bits"></div>
+    <div class="status" id="status" aria-live="polite"></div>
+    <div class="btns"><button id="fix" type="button">Correct the error</button><button id="reset" type="button">New message</button></div>
+  </div>
+</header>
 
-    <section id="research" class="section-pad"><div class="container">
-      <div class="section-heading"><p class="eyebrow" data-i18n="researchEyebrow">Explorer les structures</p><h2 data-i18n="researchTitle">Recherche</h2><p class="section-lead" data-i18n="researchLead">Mes travaux s’inscrivent à l’interface de l’algèbre et de la théorie des codes.</p></div>
-      <div class="research-grid">
-        <article class="research-card"><span class="card-index">01 / ALGÈBRE</span><div class="card-icon">◇</div><h3 data-i18n="r1Title">Algèbres tordues et codes de groupes</h3><p data-i18n="r1Text">Étude de structures algébriques tordues, de cocycles et de constructions de codes à partir de groupes finis.</p></article>
-        <article class="research-card"><span class="card-index">02 / CODAGE</span><div class="card-icon">⌘</div><h3 data-i18n="r2Title">Théorie algébrique des codes</h3><p data-i18n="r2Text">Codes monomiaux généralisés, codes métacycliques tordus, codes LCD et propriétés de dualité.</p></article>
-        <article class="research-card"><span class="card-index">03 / PERSPECTIVES</span><div class="card-icon">⟡</div><h3 data-i18n="r3Title">Codes quantiques et cryptographie</h3><p data-i18n="r3Text">Intérêt scientifique pour la correction d’erreurs quantiques et la cryptographie post-quantique.</p></article>
-      </div>
-    </div></section>
+<section id="research">
+  <h2>Research</h2>
+  <p>My thesis, <em>Algebraic codes from skew and twisted structures</em>, was supervised by Pr Mustapha Najmeddine at ENSAM Meknès. It covers monomial and quasi-T-cyclic codes, twisted codes over metacyclic groups, and dual codes arising from 2-cocycles.</p>
+  <p class="small">Keywords: coding theory, skew polynomial rings, twisted group algebras, Galois LCD and self-orthogonal codes, quantum codes.</p>
+</section>
 
-    <section id="publications" class="section-pad section-tint"><div class="container">
-      <div class="section-heading heading-row"><div><p class="eyebrow" data-i18n="pubEyebrow">Articles scientifiques</p><h2 data-i18n="pubTitle">Publications sélectionnées</h2></div><span class="heading-note" data-i18n="pubNote">DOI et pages éditeur</span></div>
-      <div class="publication-list">
-        <article class="publication"><div class="pub-year">2026</div><div class="pub-body"><h3>Metacyclic Twisted Codes</h3><p class="pub-authors">L. Mouatadid, O. Kabbouch, H. Ou-azzou, M. Najmeddine</p><p class="pub-journal"><em>Discrete Mathematics</em>, vol. 349, no. 10, article 115201.</p><a class="text-link" href="https://doi.org/10.1016/j.disc.2026.115201" target="_blank" rel="noopener noreferrer">DOI : 10.1016/j.disc.2026.115201 <span aria-hidden="true">↗</span></a></div></article>
-        <article class="publication"><div class="pub-year">2026</div><div class="pub-body"><h3>Dual codes from 2-cocycles</h3><p class="pub-journal"><em>Cryptography and Communications</em>.</p><a class="text-link" href="https://doi.org/10.1007/s12095-026-00924-9" target="_blank" rel="noopener noreferrer">DOI : 10.1007/s12095-026-00924-9 <span aria-hidden="true">↗</span></a></div></article>
-        <article class="publication"><div class="pub-year">2025</div><div class="pub-body"><h3>Galois self-orthogonal and Galois LCD one-generator (λ̄, θ, ℓ)-monomial codes</h3><p class="pub-journal"><em>Quantum Information Processing</em>.</p><a class="text-link" href="https://doi.org/10.1007/s11128-025-04967-4" target="_blank" rel="noopener noreferrer">DOI : 10.1007/s11128-025-04967-4 <span aria-hidden="true">↗</span></a></div></article>
-        <article class="publication"><div class="pub-year">2025</div><div class="pub-body"><h3>θ-Generalized monomial codes</h3><p class="pub-journal"><em>Journal of Algebra Combinatorics, Discrete Structures and Applications</em>.</p><a class="text-link" href="https://doi.org/10.13069/jacodesmath.v12i2.326" target="_blank" rel="noopener noreferrer">DOI : 10.13069/jacodesmath.v12i2.326 <span aria-hidden="true">↗</span></a></div></article>
-        <article class="publication"><div class="pub-year">2025</div><div class="pub-body"><h3>On the structure of quasi-T-cyclic codes</h3><p class="pub-journal"><em>Discrete Mathematics, Algorithms and Applications</em>.</p><a class="text-link" href="https://doi.org/10.1142/S1793830924500691" target="_blank" rel="noopener noreferrer">DOI : 10.1142/S1793830924500691 <span aria-hidden="true">↗</span></a></div></article>
-        <article class="publication"><div class="pub-year">2023</div><div class="pub-body"><h3>On the algebraic structure of monomial codes and their generalizations</h3><p class="pub-journal"><em>Journal of Algebra Combinatorics, Discrete Structures and Applications</em>.</p><a class="text-link" href="https://doi.org/10.13069/jacodesmath.v10i3.247" target="_blank" rel="noopener noreferrer">DOI : 10.13069/jacodesmath.v10i3.247 <span aria-hidden="true">↗</span></a></div></article>
-      </div>
-      <p class="small-note" data-i18n="pubVerify">Les références sont reprises du CV fourni. Vérifiez les métadonnées finales (auteurs, année, volume et pages) auprès des éditeurs avant une utilisation officielle.</p>
-    </div></section>
+<section id="publications">
+  <h2>Publications</h2>
+  <ul class="plain">
+    <li class="pub"><span class="y">2026</span><span><span class="t">Dual codes from 2-cocycles.</span> <em>Cryptography and Communications.</em> <a href="https://doi.org/10.1007/s12095-026-00924-9">DOI</a></span></li>
+    <li class="pub"><span class="y">2026</span><span><span class="t">Metacyclic Twisted Codes.</span> <em>Discrete Mathematics</em>, 349(10), 115201. <a href="https://doi.org/10.1016/j.disc.2026.115201">DOI</a></span></li>
+    <li class="pub"><span class="y">2025</span><span><span class="t">Galois self-orthogonal and Galois LCD one-generator (λ̄, θ, ℓ)-monomial codes.</span> <em>Quantum Information Processing.</em> <a href="https://doi.org/10.1007/s11128-025-04967-4">DOI</a></span></li>
+    <li class="pub"><span class="y">2025</span><span><span class="t">θ-Generalized monomial codes.</span> <em>Journal of Algebra Combinatorics, Discrete Structures and Applications.</em> <a href="https://doi.org/10.13069/jacodesmath.v12i2.326">DOI</a></span></li>
+    <li class="pub"><span class="y">2025</span><span><span class="t">On the structure of quasi-T-cyclic codes.</span> <em>Discrete Mathematics, Algorithms and Applications.</em> <a href="https://doi.org/10.1142/S1793830924500691">DOI</a></span></li>
+    <li class="pub"><span class="y">2023</span><span><span class="t">On the algebraic structure of monomial codes and their generalizations.</span> <em>Journal of Algebra Combinatorics, Discrete Structures and Applications.</em> <a href="https://doi.org/10.13069/jacodesmath.v10i3.247">DOI</a></span></li>
+  </ul>
+</section>
 
-    <section id="teaching" class="section-pad"><div class="container">
-      <div class="section-heading"><p class="eyebrow" data-i18n="teachEyebrow">Transmission des mathématiques</p><h2 data-i18n="teachTitle">Enseignement</h2><p class="section-lead" data-i18n="teachLead">Enseignement en classes préparatoires et dans l’enseignement supérieur.</p></div>
-      <div class="timeline">
-        <article class="timeline-item"><div class="timeline-date">2025 — …</div><div class="timeline-content"><h3 data-i18n="teach1Title">Université Mohammed VI des Sciences et de la Santé (UM6SS)</h3><p data-i18n="teach1Role">Enseignant de mathématiques · Classes préparatoires intégrées</p><p data-i18n="teach1Text">Algèbre, analyse, analyse numérique et probabilités. École Supérieure Mohammed VI d’Ingénieurs en Sciences de la Santé (ESM6ISS).</p></div></article>
-        <article class="timeline-item"><div class="timeline-date">2019 — 2025</div><div class="timeline-content"><h3 data-i18n="teach2Title">Classes préparatoires aux grandes écoles (CPGE)</h3><p data-i18n="teach2Role">Professeur agrégé de mathématiques · Errachidia, Maroc</p><p data-i18n="teach2Text">Enseignement en première année MPSI, puis en deuxième année MP, et préparation des étudiants aux concours des grandes écoles d’ingénieurs.</p></div></article>
-        <article class="timeline-item"><div class="timeline-date">2018</div><div class="timeline-content"><h3 data-i18n="teach3Title">École Nationale Supérieure d’Arts et Métiers (ENSAM)</h3><p data-i18n="teach3Role">Enseignant vacataire · Meknès, Maroc</p><p data-i18n="teach3Text">Travaux dirigés de fonctions réelles, courbes paramétrées et topologie de ℝⁿ.</p></div></article>
-      </div>
-      <div class="resource-callout"><div><span class="resource-symbol">∫</span><div><h3 data-i18n="resourcesTitle">Ressources pédagogiques</h3><p data-i18n="resourcesText">Des supports de cours et feuilles de TD pourront être ajoutés ici au fil du temps.</p></div></div><span class="coming-soon" data-i18n="comingSoon">À compléter</span></div>
-    </div></section>
+<section id="teaching">
+  <h2>Teaching</h2>
+  <ul class="plain">
+    <li class="row"><span class="y">2025–</span><span><span class="t">ESM6ISS, UM6SS, Rabat.</span> Algebra, analysis, numerical analysis and probability in integrated preparatory classes.</span></li>
+    <li class="row"><span class="y">2019–25</span><span><span class="t">CPGE, Errachidia.</span> MPSI and MP classes, preparing students for the written and oral exams of the engineering school competitions.</span></li>
+    <li class="row"><span class="y">2018</span><span><span class="t">ENSAM, Meknès.</span> Tutorials on real functions, parametrized curves and the topology of ℝⁿ.</span></li>
+    <li class="row"><span class="y">2021–23</span><span><span class="t">CNC oral examiner</span> at ENSMR (2021), EHTP (2022) and EMI (2023).</span></li>
+  </ul>
+</section>
 
-    <section id="cv" class="cv-band"><div class="container cv-band-inner"><div><p class="eyebrow" data-i18n="cvEyebrow">Parcours académique</p><h2 data-i18n="cvTitle">Consulter mon CV</h2><p data-i18n="cvText">Formation, expérience d’enseignement, publications et compétences dans un document PDF.</p></div><a class="button button-light" href="documents/CV_Lhousain_Mouatadid.pdf" download><span data-i18n="downloadCV">Télécharger le CV</span> <span aria-hidden="true">↓</span></a></div></section>
+<section id="education">
+  <h2>Education</h2>
+  <ul class="plain">
+    <li class="row"><span class="y">2021–26</span><span><span class="t">PhD in mathematics,</span> ENSAM, Université Moulay Ismaïl, Meknès.</span></li>
+    <li class="row"><span class="y">2019</span><span><span class="t">Agrégation de mathématiques,</span> national competition, Morocco.</span></li>
+    <li class="row"><span class="y">2015–17</span><span><span class="t">MSc in pure mathematics,</span> Faculté des sciences, Meknès. Thesis on Lie groups, symmetry and invariance, supervised by Pr El Hassan El Kinani.</span></li>
+    <li class="row"><span class="y">2011–15</span><span><span class="t">BSc in pure mathematics,</span> Faculté des sciences, Meknès. Thesis on the zero-divisor graph of a commutative ring, supervised by Pr Samir Bouchiba.</span></li>
+  </ul>
+  <p class="small">Tools: Python, SageMath, MAGMA. Languages: Arabic, French, English.</p>
+</section>
 
-    <section id="contact" class="section-pad"><div class="container contact-grid"><div><p class="eyebrow" data-i18n="contactEyebrow">Échange académique</p><h2 data-i18n="contactTitle">Contact</h2><p class="section-lead" data-i18n="contactText">Pour toute question concernant mes travaux, une collaboration scientifique ou l’enseignement des mathématiques, vous pouvez me contacter par courriel.</p></div><div class="contact-card"><span class="contact-label" data-i18n="emailLabel">Courriel</span><a class="email-link" href="mailto:lhousain.mouatadid@gmail.com">lhousain.mouatadid@gmail.com <span aria-hidden="true">↗</span></a><p class="contact-hint" data-i18n="profilesHint">Les liens ORCID, Google Scholar et autres profils scientifiques seront ajoutés lorsqu’ils seront confirmés.</p></div></div></section>
-  </main>
-  <footer class="site-footer"><div class="container footer-inner"><a class="footer-brand" href="#home">LM<span>.</span></a><p>© <span id="year"></span> Lhousain Mouatadid</p><a href="#home" class="back-top" data-i18n="backTop">Retour en haut ↑</a></div></footer>
+<section id="contact">
+  <h2>Contact</h2>
+  <p><a href="mailto:lhousain.mouatadid@gmail.com">lhousain.mouatadid@gmail.com</a><br>Rabat–Salé, Morocco</p>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="yr">2026</span> Lhousain Mouatadid</div></footer>
+
+<script>
+// Hamming (7,4): positions 1..7, parity bits at 1, 2, 4.
+const box=document.getElementById('bits'), st=document.getElementById('status');
+let word=[], sent=[];
+function encode(d){ // d = [d3,d5,d6,d7]
+  const [a,b,c,e]=d, w=[0,0,a,0,b,c,e];
+  w[0]=a^b^e; w[1]=a^c^e; w[3]=b^c^e; return w;
+}
+function syndrome(w){
+  let s=0; for(let p=1;p<=7;p++) if(w[p-1]) s^=p; return s;
+}
+function fresh(){
+  const d=[0,0,0,0].map(()=>Math.random()<.5?1:0);
+  sent=encode(d); word=sent.slice(); draw();
+}
+function draw(){
+  box.innerHTML='';
+  word.forEach((v,i)=>{
+    const p=i+1, isP=(p&(p-1))===0, bad=v!==sent[i];
+    const b=document.createElement('button');
+    b.type='button'; b.className='bit'+(isP?' parity':'')+(bad?' bad':'');
+    b.setAttribute('aria-label',(isP?'Parity':'Data')+' bit '+p+', value '+v+(bad?', corrupted':''));
+    b.innerHTML=v+'<small>'+(isP?'p':'d')+p+'</small>';
+    b.onclick=()=>{word[i]^=1;draw()};
+    box.appendChild(b);
+  });
+  const s=syndrome(word);
+  if(s===0){
+    const same=word.every((v,i)=>v===sent[i]);
+    st.className='status ok';
+    st.innerHTML=same?'<b>Syndrome 000.</b> All parity checks pass. The word is intact.':'<b>Syndrome 000.</b> Several bits changed, so the checks pass but the word is a different codeword.';
+  } else {
+    st.className='status';
+    st.innerHTML='<b>Syndrome '+s.toString(2).padStart(3,'0')+'.</b> The checks point to bit '+s+'.';
+  }
+}
+document.getElementById('fix').onclick=()=>{const s=syndrome(word); if(s){word[s-1]^=1; draw();}};
+document.getElementById('reset').onclick=fresh;
+document.getElementById('yr').textContent=new Date().getFullYear();
+fresh();
+</script>
 </body>
 </html>
