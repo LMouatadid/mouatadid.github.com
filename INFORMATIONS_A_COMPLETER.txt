@@ -1,0 +1,10 @@
+INFORMATIONS À CONFIRMER AVANT PUBLICATION
+
+1. Profil institutionnel officiel et intitulé exact de l'affiliation actuelle.
+2. Identifiants et URL ORCID, Google Scholar, MathSciNet, zbMATH ou autres profils académiques (ne pas créer de liens avant confirmation).
+3. Métadonnées finales des publications : auteurs dans l'ordre officiel, titre exact, année, revue, volume, numéro, pages/article number et DOI. Les liens DOI présents ont été repris du CV fourni et des messages précédents; vérifiez-les sur les sites des éditeurs.
+4. Supports pédagogiques à rendre publics : cours, TD, corrigés, formats et autorisations éventuelles.
+5. Confirmation que l'adresse e-mail affichée peut être publiée sur un site accessible à tous.
+6. Confirmer les intitulés institutionnels et dates du poste actuel et de l'expérience CPGE.
+
+Données volontairement non inventées : ORCID, Google Scholar, profil institutionnel, photo, liste de projets financés et statistiques de citations.
